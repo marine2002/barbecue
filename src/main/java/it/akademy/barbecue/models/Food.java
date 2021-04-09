@@ -17,7 +17,7 @@ public class Food {
 
 
 
-    @JsonBackReference(value = "foods-barbecue")
+    @JsonBackReference(value = "barbecue-foods")
     @ManyToOne
     private Barbecue barbecue;
 

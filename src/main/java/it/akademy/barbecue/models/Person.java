@@ -1,53 +1,40 @@
-//package it.akademy.barbecue.models;
-//
-//import javax.persistence.Entity;
-//import java.time.LocalDate;
-//
-//
-//@Entity
-//public class Person {
-//
-//    private String name;
-//    private String firstName;
-//    private Integer age;
-//    private Address address;
-//
-//    public Person(String name, String firstName, Integer age, Address address) {
-//        this.name = name;
-//        this.firstName = firstName;
-//        this.age = age;
-//        this.address = address;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public Integer getAge() {
-//        return age;
-//    }
-//
-//    public void setAge(Integer age) {
-//        this.age = age;
-//    }
-//
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
-//}
+package it.akademy.barbecue.models;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
+
+@Entity
+public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private int age;
+
+    private String role;
+
+
+    @JsonBackReference(value = "barbecue-persons")
+    @ManyToOne
+    private Barbecue barbecue;
+
+    public Person(){}
+
+    public Person(int id, String firstName, String lastName, int age, Barbecue barbecue, String role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.barbecue = barbecue;
+        this.role = role;
+    }
+}

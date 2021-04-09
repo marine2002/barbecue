@@ -1,6 +1,7 @@
 package it.akademy.barbecue.dao;
 
 import it.akademy.barbecue.models.Barbecue;
+import it.akademy.barbecue.models.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,12 +11,11 @@ import java.util.List;
 @Repository
 public interface BarbecueDao extends JpaRepository<Barbecue, Integer> {
 
-    @Override
+    Barbecue findById(int id);
+
     List<Barbecue> findAll();
 
-    List<Barbecue> findAllByCity(String city);
-
-    Barbecue findById(int id);
+    List<Barbecue> findAllByAddress(Address address);
 
     Barbecue save(Barbecue barbecue);
 

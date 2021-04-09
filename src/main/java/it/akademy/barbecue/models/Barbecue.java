@@ -1,16 +1,12 @@
 package it.akademy.barbecue.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.apache.tomcat.jni.Address;
-import java.time.LocalDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Barbecue {
@@ -21,15 +17,13 @@ public class Barbecue {
 
     private LocalDate date;
 
-//    private Address address;
+    @JsonBackReference(value = "barbecue-address")
+    @ManyToOne
+    private Address address;
 
-    private String city;
-
-    private String country;
-
-    @JsonManagedReference(value = "barbecue-guests")
+    @JsonManagedReference(value = "barbecue-persons")
     @OneToMany
-    private List<Guest> guests;
+    private List<Person> persons;
 
     @JsonManagedReference(value = "barbecue-foods")
     @OneToMany
@@ -39,13 +33,12 @@ public class Barbecue {
     @OneToMany
     private List<Drink> drinks;
 
-    public Barbecue(){}
+    public Barbecue() {}
 
-    public Barbecue(LocalDate date, String city, String country){
+    public Barbecue(LocalDate date) {
         this.date = date;
-        this.city = city;
-        this.country = country;
-        this.guests = new ArrayList<>();
+        this.address = new Address();
+        this.persons = new ArrayList<>();
         this.foods = new ArrayList<>();
         this.drinks = new ArrayList<>();
     }
@@ -66,28 +59,20 @@ public class Barbecue {
         this.date = date;
     }
 
-    public String getCity() {
-        return city;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getCountry() {
-        return country;
+    public List<Person> getPersons() {
+        return persons;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public List<Guest> getGuests() {
-        return guests;
-    }
-
-    public void setGuests(List<Guest> guests) {
-        this.guests = guests;
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
     }
 
     public List<Food> getFoods() {
