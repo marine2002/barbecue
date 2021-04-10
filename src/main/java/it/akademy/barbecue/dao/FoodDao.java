@@ -14,8 +14,6 @@ public interface FoodDao extends JpaRepository<Food, Integer> {
     @Override
     List<Food> findAll();
 
-    List<Food> findAllByBarbecue(Barbecue barbecue);
-
     Food findById(int id);
 
     Food save(Food food);

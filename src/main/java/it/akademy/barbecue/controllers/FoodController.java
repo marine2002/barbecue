@@ -39,9 +39,9 @@ public class FoodController {
     }
 
     @PostMapping
-    public ResponseEntity<Food> createFood(@RequestBody Food food){
-        foodDao.save(food);
-        return new ResponseEntity<>(food, HttpStatus.CREATED);
+    public ResponseEntity<Food> addFood(@RequestBody Food food) {
+        Food addedFood = foodDao.save(food);
+        return new ResponseEntity<>(addedFood, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -54,16 +54,17 @@ public class FoodController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Food> putFood(@PathVariable int id, @RequestBody Food food){
-//        Food modifiedFood = foodDao.findById(id);
-//
-//        if(modifiedFood == null){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//
-//        food.setId(id);
-//        modifiedFood = foodDao.save(food);
-//        return new ResponseEntity<>(modifiedFood, HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Food> putFood(@PathVariable int id, @RequestBody Food food){
+        Food modifiedFood = foodDao.findById(id);
+
+        if(modifiedFood == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        food.setId(id);
+        modifiedFood = foodDao.save(food);
+        return new ResponseEntity<>(modifiedFood, HttpStatus.OK);
+    }
+
 }

@@ -2,7 +2,6 @@ package it.akademy.barbecue.controllers;
 
 
 import it.akademy.barbecue.dao.DrinkDao;
-import it.akademy.barbecue.models.Barbecue;
 import it.akademy.barbecue.models.Drink;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
