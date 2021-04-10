@@ -39,9 +39,9 @@ public class PersonController {
     }
 
     @PostMapping
-    public ResponseEntity<Person> createPerson(@RequestBody Person person){
-        personDao.save(person);
-        return new ResponseEntity<>(person, HttpStatus.CREATED);
+    public ResponseEntity<Person> addPerson(@RequestBody Person person) {
+        Person addedPerson = personDao.save(person);
+        return new ResponseEntity<>(addedPerson, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -54,16 +54,17 @@ public class PersonController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Person> putPerson(@PathVariable int id, @RequestBody Person person){
-//        Person modifiedPerson = personDao.findById(id);
-//
-//        if(modifiedPerson == null){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//
-//        person.setId(id);
-//        modifiedPerson = personDao.save(person);
-//        return new ResponseEntity<>(modifiedPerson, HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Person> putPerson(@PathVariable int id, @RequestBody Person person){
+        Person modifiedPerson = personDao.findById(id);
+
+        if(modifiedPerson == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        person.setId(id);
+        modifiedPerson = personDao.save(person);
+        return new ResponseEntity<>(modifiedPerson, HttpStatus.OK);
+    }
+
 }

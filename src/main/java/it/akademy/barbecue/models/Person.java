@@ -1,7 +1,6 @@
 package it.akademy.barbecue.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -30,11 +29,59 @@ public class Person {
 
     public Person(){}
 
-    public Person(int id, String firstName, String lastName, int age, Barbecue barbecue, String role) {
+    public Person(String firstName, String lastName, int age, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.barbecue = barbecue;
+        this.barbecue = new Barbecue();
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Barbecue getBarbecue() {
+        return barbecue;
+    }
+
+    public void setBarbecue(Barbecue barbecue) {
+        this.barbecue = barbecue;
     }
 }

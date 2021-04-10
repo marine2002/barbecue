@@ -1,7 +1,6 @@
 package it.akademy.barbecue.dao;
 
 import it.akademy.barbecue.models.Food;
-import it.akademy.barbecue.models.Barbecue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
