@@ -6,22 +6,26 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Person {
+public class Person implements FoodChoices, DrinkChoices {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String firstName;
-
     private String lastName;
-
     private int age;
-
     private Role role;
 
+    @ElementCollection
+    List<FoodType> foodTypes;
+
+    @ElementCollection
+    List<DrinkType> drinkTypes;
 
     @JsonBackReference(value = "barbecue-persons")
     @ManyToOne
@@ -35,6 +39,8 @@ public class Person {
         this.age = age;
         this.barbecue = new Barbecue();
         this.role = role;
+        this.foodTypes = new ArrayList<>();
+        this.drinkTypes = new ArrayList<>();
     }
 
     public int getId() {
@@ -77,11 +83,63 @@ public class Person {
         this.role = role;
     }
 
+    public List<FoodType> getFoodTypes() {
+        return foodTypes;
+    }
+
+    public void setFoodTypes(List<FoodType> foodTypes) {
+        this.foodTypes = foodTypes;
+    }
+
+    public List<DrinkType> getDrinkTypes() {
+        return drinkTypes;
+    }
+
+    public void setDrinkTypes(List<DrinkType> drinkTypes) {
+        this.drinkTypes = drinkTypes;
+    }
+
     public Barbecue getBarbecue() {
         return barbecue;
     }
 
     public void setBarbecue(Barbecue barbecue) {
         this.barbecue = barbecue;
+    }
+
+    @Override
+    public void drink(DrinkType drinkType) {
+        if(!this.drinkTypes.contains(drinkType)){
+            this.drinkTypes.add(drinkType);
+        }
+    }
+
+    @Override
+    public void dontDrink(DrinkType drinkType) {
+        this.drinkTypes.remove(drinkType);
+    }
+
+    @Override
+    public void eat(FoodType foodType) {
+        if(!this.foodTypes.contains(foodType)){
+            this.foodTypes.add(foodType);
+        }
+    }
+
+    @Override
+    public void dontEat(FoodType foodType) {
+        this.foodTypes.remove(foodType);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", role=" + role +
+                ", foodTypes=" + foodTypes +
+                ", drinkTypes=" + drinkTypes +
+                '}';
     }
 }
