@@ -15,8 +15,6 @@ public interface BarbecueDao extends JpaRepository<Barbecue, Integer> {
 
     List<Barbecue> findAll();
 
-    List<Barbecue> findAllByAddress(Address address);
-
     Barbecue save(Barbecue barbecue);
 
     void deleteById(int id);
