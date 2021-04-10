@@ -20,7 +20,7 @@ public class Person {
 
     private int age;
 
-    private String role;
+    private Role role;
 
 
     @JsonBackReference(value = "barbecue-persons")
@@ -29,7 +29,7 @@ public class Person {
 
     public Person(){}
 
-    public Person(String firstName, String lastName, int age, String role) {
+    public Person(String firstName, String lastName, int age, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -69,11 +69,11 @@ public class Person {
         this.age = age;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

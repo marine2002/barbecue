@@ -4,8 +4,7 @@ import it.akademy.barbecue.dao.BarbecueDao;
 import it.akademy.barbecue.dao.DrinkDao;
 import it.akademy.barbecue.dao.FoodDao;
 import it.akademy.barbecue.dao.PersonDao;
-import it.akademy.barbecue.models.Address;
-import it.akademy.barbecue.models.Barbecue;
+import it.akademy.barbecue.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,5 +74,67 @@ public class BarbecueController {
         return new ResponseEntity<>(modifiedBarbecue, HttpStatus.OK);
     }
 
+    @PutMapping("/{barbecueId}/persons/{personId}")
+    public ResponseEntity<Barbecue> addPersonInBarbecue(@PathVariable int barbecueId, @PathVariable int personId){
+        Barbecue barbecue = barbecueDao.findById(barbecueId);
+
+        if(barbecue == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Person person = personDao.findById(personId);
+
+        if(person == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        barbecue.getPersons().add(person);
+        person.setBarbecue(barbecue);
+        barbecue.setId(barbecueId);
+        barbecueDao.save(barbecue);
+        return new ResponseEntity<>(barbecue, HttpStatus.OK);
+    }
+
+    @PutMapping("/{barbecueId}/foods/{foodId}")
+    public ResponseEntity<Barbecue> addFoodInBarbecue(@PathVariable int barbecueId, @PathVariable int foodId){
+        Barbecue barbecue = barbecueDao.findById(barbecueId);
+
+        if(barbecue == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Food food = foodDao.findById(foodId);
+
+        if(food == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        barbecue.getFoods().add(food);
+        food.setBarbecue(barbecue);
+        barbecue.setId(barbecueId);
+        barbecueDao.save(barbecue);
+        return new ResponseEntity<>(barbecue, HttpStatus.OK);
+    }
+
+    @PutMapping("/{barbecueId}/drinks/{drinkId}")
+    public ResponseEntity<Barbecue> addDrinkInBarbecue(@PathVariable int barbecueId, @PathVariable int drinkId){
+        Barbecue barbecue = barbecueDao.findById(barbecueId);
+
+        if(barbecue == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Drink drink = drinkDao.findById(drinkId);
+
+        if(drink == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        barbecue.getDrinks().add(drink);
+        drink.setBarbecue(barbecue);
+        barbecue.setId(barbecueId);
+        barbecueDao.save(barbecue);
+        return new ResponseEntity<>(barbecue, HttpStatus.OK);
+    }
 
 }
