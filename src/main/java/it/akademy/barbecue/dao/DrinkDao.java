@@ -13,8 +13,6 @@ public interface DrinkDao extends JpaRepository<Drink, Integer> {
     @Override
     List<Drink> findAll();
 
-    List<Drink> findAllByBarbecue(Barbecue barbecue);
-
     Drink findById(int id);
 
     Drink save(Drink drink);

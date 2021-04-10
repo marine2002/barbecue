@@ -36,6 +36,7 @@ public class BarbecueController {
         return new ResponseEntity<>(barbecues, HttpStatus.OK);
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Barbecue> getById(@PathVariable int id){
         Barbecue barbecue = barbecueDao.findById(id);
@@ -73,4 +74,6 @@ public class BarbecueController {
         modifiedBarbecue = barbecueDao.save(barbecue);
         return new ResponseEntity<>(modifiedBarbecue, HttpStatus.OK);
     }
+
+
 }

@@ -22,15 +22,15 @@ public class Barbecue {
     private Address address;
 
     @JsonManagedReference(value = "barbecue-persons")
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Person> persons;
 
     @JsonManagedReference(value = "barbecue-foods")
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Food> foods;
 
     @JsonManagedReference(value = "barbecue-drinks")
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Drink> drinks;
 
     public Barbecue() {}

@@ -19,7 +19,7 @@ public class Address {
     String country;
 
     @JsonManagedReference(value = "barbecue-address")
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Barbecue> barbecues;
 
     public Address(int number, String streetName, String city, String country ) {

@@ -2,6 +2,7 @@ package it.akademy.barbecue.controllers;
 
 
 import it.akademy.barbecue.dao.DrinkDao;
+import it.akademy.barbecue.models.Barbecue;
 import it.akademy.barbecue.models.Drink;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,9 +40,9 @@ public class DrinkController {
     }
 
     @PostMapping
-    public ResponseEntity<Drink> createDrink(@RequestBody Drink drink){
-        drinkDao.save(drink);
-        return new ResponseEntity<>(drink, HttpStatus.CREATED);
+    public ResponseEntity<Drink> addDrink(@RequestBody Drink drink) {
+        Drink addedDrink = drinkDao.save(drink);
+        return new ResponseEntity<>(addedDrink, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -54,16 +55,17 @@ public class DrinkController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Drink> putDrink(@PathVariable int id, @RequestBody Drink drink){
-//        Drink modifiedDrink = drinkDao.findById(id);
-//
-//        if(modifiedDrink == null){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//
-//        drink.setId(id);
-//        modifiedDrink = drinkDao.save(drink);
-//        return new ResponseEntity<>(modifiedDrink, HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Drink> putDrink(@PathVariable int id, @RequestBody Drink drink){
+        Drink modifiedDrink = drinkDao.findById(id);
+
+        if(modifiedDrink == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        drink.setId(id);
+        modifiedDrink = drinkDao.save(drink);
+        return new ResponseEntity<>(modifiedDrink, HttpStatus.OK);
+    }
+
 }
