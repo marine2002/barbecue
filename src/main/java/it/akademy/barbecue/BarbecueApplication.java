@@ -68,6 +68,7 @@ public class BarbecueApplication {
 //        System.out.println(teamSoft);
 
 
+
 //        Food food = new Food("Chips");
 //        Food food1 = new Food("Salade");
 //        Food food2 = new Food("Tiramisu");
@@ -81,6 +82,24 @@ public class BarbecueApplication {
 //        person.bringPerson((person1));
 //
 //        person.bringFood((food1));
+
+
+//        BarbecueActor barbecueActor = new BarbecueActor("Pika", "Chu", 30, Role.GUEST, true);
+//        BarbecueActor barbecueActor1 = new BarbecueActor("Sala", "Meche", 25, Role.HOST, false);
+//        BarbecueActor barbecueActor2 = new BarbecueActor("Bulbi", "Zarre", 20, Role.GUEST, false);
+//        BarbecueActor barbecueActor3 = new BarbecueActor("Cara", "Puce", 15, Role.HOST, true);
+//
+//        barbecueActor.playSoccer(barbecueActor);
+//        barbecueActor.playSoccer(barbecueActor3);
+//
+//        barbecueActor.playPingPong(barbecueActor);
+//        barbecueActor.playPingPong(barbecueActor3);
+//
+//        barbecueActor.cook(barbecueActor);
+//        barbecueActor.cook(barbecueActor3);
+//
+//        barbecueActor.washDish(barbecueActor);
+//        barbecueActor.washDish(barbecueActor3);
     }
 
 }
