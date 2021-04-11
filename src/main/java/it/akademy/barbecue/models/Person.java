@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Person implements FoodChoices, DrinkChoices {
+public class Person implements FoodChoices, DrinkChoices, Actions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -141,5 +141,20 @@ public class Person implements FoodChoices, DrinkChoices {
                 ", foodTypes=" + foodTypes +
                 ", drinkTypes=" + drinkTypes +
                 '}';
+    }
+
+    @Override
+    public void bringFood(Food food) {
+        System.out.println( "Il y aura du/de la/de " + food.getName() + " à manger !");
+    }
+
+    @Override
+    public void bringPerson(Person person) {
+        if (person.role == Role.GUEST) {
+            System.out.println(person.getFirstName() + " est de la party ! ");
+        }
+        else {
+            System.out.println("T'es déjà l'hôte du barbecue !" );
+        }
     }
 }
