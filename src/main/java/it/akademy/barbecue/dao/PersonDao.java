@@ -11,13 +11,11 @@ public interface PersonDao extends JpaRepository<Person, Integer> {
 
     List<Person> findAll();
 
-//    List<Person> findAllByBarbecue(Barbecue barbecue);
-
     Person findById(int id);
 
     Person save(Person person);
 
     void deleteById(int id);
 
-
+//    List<Person> findAllByBarbecue(Barbecue barbecue);
 }

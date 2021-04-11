@@ -1,6 +1,5 @@
 package it.akademy.barbecue;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import it.akademy.barbecue.models.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

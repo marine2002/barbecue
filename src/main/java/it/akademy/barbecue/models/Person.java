@@ -1,6 +1,7 @@
 package it.akademy.barbecue.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -31,7 +32,7 @@ public class Person implements FoodChoices, DrinkChoices, Actions {
     @ManyToOne
     private Barbecue barbecue;
 
-    public Person(){}
+    public Person() {}
 
     public Person(String firstName, String lastName, int age, Role role) {
         this.firstName = firstName;
@@ -109,7 +110,7 @@ public class Person implements FoodChoices, DrinkChoices, Actions {
 
     @Override
     public void drink(DrinkType drinkType) {
-        if(!this.drinkTypes.contains(drinkType)){
+        if (!this.drinkTypes.contains(drinkType)) {
             this.drinkTypes.add(drinkType);
         }
     }
@@ -121,7 +122,7 @@ public class Person implements FoodChoices, DrinkChoices, Actions {
 
     @Override
     public void eat(FoodType foodType) {
-        if(!this.foodTypes.contains(foodType)){
+        if (!this.foodTypes.contains(foodType)) {
             this.foodTypes.add(foodType);
         }
     }
@@ -145,16 +146,15 @@ public class Person implements FoodChoices, DrinkChoices, Actions {
 
     @Override
     public void bringFood(Food food) {
-        System.out.println( "Il y aura du/de la/de " + food.getName() + " à manger !");
+        System.out.println("Il y aura du/de la/de " + food.getName() + " à manger !");
     }
 
     @Override
     public void bringPerson(Person person) {
         if (person.role == Role.GUEST) {
             System.out.println(person.getFirstName() + " est de la party ! ");
-        }
-        else {
-            System.out.println("T'es déjà l'hôte du barbecue !" );
+        } else {
+            System.out.println("T'es déjà l'hôte du barbecue !");
         }
     }
 }

@@ -37,9 +37,9 @@ public class BarbecueController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Barbecue> getById(@PathVariable int id){
+    public ResponseEntity<Barbecue> getById(@PathVariable int id) {
         Barbecue barbecue = barbecueDao.findById(id);
-        if(barbecue == null){
+        if (barbecue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(barbecue, HttpStatus.OK);
@@ -52,9 +52,9 @@ public class BarbecueController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBarbecue(@PathVariable int id){
+    public ResponseEntity<?> deleteBarbecue(@PathVariable int id) {
         Barbecue barbecue = barbecueDao.findById(id);
-        if(barbecue == null){
+        if (barbecue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         barbecueDao.deleteById(id);
@@ -62,10 +62,10 @@ public class BarbecueController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Barbecue> putBarbecue(@PathVariable int id, @RequestBody Barbecue barbecue){
+    public ResponseEntity<Barbecue> putBarbecue(@PathVariable int id, @RequestBody Barbecue barbecue) {
         Barbecue modifiedBarbecue = barbecueDao.findById(id);
 
-        if(modifiedBarbecue == null){
+        if (modifiedBarbecue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -75,16 +75,16 @@ public class BarbecueController {
     }
 
     @PutMapping("/{barbecueId}/persons/{personId}")
-    public ResponseEntity<Barbecue> addPersonInBarbecue(@PathVariable int barbecueId, @PathVariable int personId){
+    public ResponseEntity<Barbecue> addPersonInBarbecue(@PathVariable int barbecueId, @PathVariable int personId) {
         Barbecue barbecue = barbecueDao.findById(barbecueId);
 
-        if(barbecue == null){
+        if (barbecue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         Person person = personDao.findById(personId);
 
-        if(person == null){
+        if (person == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -96,16 +96,16 @@ public class BarbecueController {
     }
 
     @PutMapping("/{barbecueId}/foods/{foodId}")
-    public ResponseEntity<Barbecue> addFoodInBarbecue(@PathVariable int barbecueId, @PathVariable int foodId){
+    public ResponseEntity<Barbecue> addFoodInBarbecue(@PathVariable int barbecueId, @PathVariable int foodId) {
         Barbecue barbecue = barbecueDao.findById(barbecueId);
 
-        if(barbecue == null){
+        if (barbecue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         Food food = foodDao.findById(foodId);
 
-        if(food == null){
+        if (food == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -117,16 +117,16 @@ public class BarbecueController {
     }
 
     @PutMapping("/{barbecueId}/drinks/{drinkId}")
-    public ResponseEntity<Barbecue> addDrinkInBarbecue(@PathVariable int barbecueId, @PathVariable int drinkId){
+    public ResponseEntity<Barbecue> addDrinkInBarbecue(@PathVariable int barbecueId, @PathVariable int drinkId) {
         Barbecue barbecue = barbecueDao.findById(barbecueId);
 
-        if(barbecue == null){
+        if (barbecue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         Drink drink = drinkDao.findById(drinkId);
 
-        if(drink == null){
+        if (drink == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 

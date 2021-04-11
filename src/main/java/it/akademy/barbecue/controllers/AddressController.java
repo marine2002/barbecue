@@ -19,36 +19,36 @@ public class AddressController {
     private final BarbecueDao barbecueDao;
 
     @Autowired
-    public AddressController(AddressDao addressDao, BarbecueDao barbecueDao){
+    public AddressController(AddressDao addressDao, BarbecueDao barbecueDao) {
         this.addressDao = addressDao;
         this.barbecueDao = barbecueDao;
     }
 
     @GetMapping
-    public ResponseEntity<List<Address>> getAllAddress(){
+    public ResponseEntity<List<Address>> getAllAddress() {
         List<Address> address = addressDao.findAll();
         return new ResponseEntity<>(address, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Address> getById(@PathVariable int id){
+    public ResponseEntity<Address> getById(@PathVariable int id) {
         Address address = addressDao.findById(id);
-        if(address == null){
+        if (address == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(address, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Address> createAddress(@RequestBody Address address){
+    public ResponseEntity<Address> createAddress(@RequestBody Address address) {
         addressDao.save(address);
         return new ResponseEntity<>(address, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAddress(@PathVariable int id){
+    public ResponseEntity<?> deleteAddress(@PathVariable int id) {
         Address address = addressDao.findById(id);
-        if(address == null){
+        if (address == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         addressDao.deleteById(id);
@@ -56,10 +56,10 @@ public class AddressController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Address> putAddress(@PathVariable int id, @RequestBody Address address){
+    public ResponseEntity<Address> putAddress(@PathVariable int id, @RequestBody Address address) {
         Address modifiedAddress = addressDao.findById(id);
 
-        if(modifiedAddress == null){
+        if (modifiedAddress == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -69,16 +69,16 @@ public class AddressController {
     }
 
     @PutMapping("/{addressId}/barbecues/{barbecueId}")
-    public ResponseEntity<Address> addBarbecueInAddress(@PathVariable int addressId, @PathVariable int barbecueId){
+    public ResponseEntity<Address> addBarbecueInAddress(@PathVariable int addressId, @PathVariable int barbecueId) {
         Address address = addressDao.findById(addressId);
 
-        if(address == null){
+        if (address == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         Barbecue barbecue = barbecueDao.findById(barbecueId);
 
-        if(barbecue == null){
+        if (barbecue == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 

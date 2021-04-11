@@ -22,7 +22,7 @@ public class Address {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Barbecue> barbecues;
 
-    public Address(int number, String streetName, String city, String country ) {
+    public Address(int number, String streetName, String city, String country) {
         this.number = number;
         this.streetName = streetName;
         this.city = city;
@@ -30,7 +30,7 @@ public class Address {
         this.barbecues = new ArrayList<>();
     }
 
-    public Address(){}
+    public Address() {}
 
     public int getId() {
         return id;
